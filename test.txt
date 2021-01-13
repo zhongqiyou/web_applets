@@ -1,1 +1,26 @@
-我是的是的分支
+1.创建分支并切换
+git switch -c 分支名称
+
+2.切换分支
+git switch 分支名称
+
+3.查看全部分支
+git branch
+
+4.合并分支
+git merge 分支名称
+
+5.推送代码到远程指定分支
+git push -u origin 分支名称
+
+6.删除本地指定分支
+git branch -D 分支名称
+
+7.删除远程指定分支(也称:同步远程代码)
+git push origin --delete 分支名称
+
+
+
+
+
+

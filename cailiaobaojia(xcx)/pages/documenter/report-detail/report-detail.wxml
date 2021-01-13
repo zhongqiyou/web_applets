@@ -1,0 +1,55 @@
+<!--pages/documenter/report-detail/report-detail.wxml-->
+<view class="report-detail" wx:if="{{info.id}}">
+  <view class="detail-header base-round">
+    <view class="header-h1">施工单位：{{info.constructionUnits}}</view>
+    <view class="header-info">
+      <view>工程名称：{{info.constructionName}}</view>
+      <view>施工部位：{{info.constructionDepartment}}</view>
+      <view>砼等级：{{info.get_concrete.name}} {{info.getParent.name}}</view>
+      <view>总方量：{{info.volume}} 坍塌度：{{info.get_unload.name}}</view>
+      <view>卸料方式：{{info.get_uninstall.name}}</view>
+      <view>是否上网：{{info.onLine == "1"? "是":"否"}}</view>
+      <view>浇筑时间：{{info.pouring}}</view>
+      <view>联系方式：{{info.mobile}}</view>
+      <view>联系人姓名：{{info.nickName}}</view>
+    </view>
+  </view>
+  <view class="detail-step base-round">
+    <view class="step-list">
+      <block wx:for="{{auditInfo}}" wx:key="index">
+      <view class="list-item round">
+        <view class="item-time">{{item.created_at}}</view>
+        <view class="item-info">
+          <!-- {{index == auditInfo.length-1 ? item.launchName : item.auditName }} -->
+          <text class="item-name">{{item.get_user ?  item.get_user.get_inside.nick_name : item.get_project_audit_info.nick_name }}</text>
+ 
+          <text class="item-job">{{item.adminText}}</text>
+          <text class="item-status {{item.audit == '0' ? 'color-blue':''}} {{item.audit == '3' ? 'color-wathet':''}} {{item.audit == '2' ? 'color-red':''}}">{{item.auditText}}</text>
+        </view>
+        <view class="item-reason"  wx:if="{{item.audit == '2' && item.content}}">    
+          <text>驳回原因:</text>
+          <text>{{item.content}}</text>
+        </view>
+      </view>        
+      </block>
+    </view>
+  </view>
+  <view class="detail-button" wx:if="{{isNeed}}">
+    <button class="button-agree" bind:tap="onAgree">同意</button>
+    <button class="button-refuse" bind:tap="onDisplay">驳回</button>
+  </view>
+  <van-dialog confirm-button-color="#4777ff"
+  use-slot closeOnClickOverlay
+  title="驳回审批"
+  show="{{ isRefuse }}"
+  show-cancel-button
+  bind:cancel="onClose"
+  bind:confirm="handleRefuse"
+  >
+    <view class="dialog">
+      <textarea name=""  maxlength="20" bindinput="getRejectContent" placeholder="请输入备注信息(最大可输入20个字符)"></textarea>
+    </view>
+  </van-dialog>
+</view>
+
+<drag></drag>

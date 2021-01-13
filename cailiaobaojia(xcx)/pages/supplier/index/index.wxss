@@ -1,0 +1,1 @@
+page{background:var(--bg-color);height:100vh}.supplier-index{padding:32rpx;padding-bottom:80rpx}.supplier-index .van-search{padding:0;margin-bottom:52rpx}.supplier-index .van-search .van-search__content{border-radius:30rpx}

@@ -1,0 +1,14 @@
+<view class="id-select">
+  <view class="select-box">
+    <text class="box-h1">请选择你的身份</text>
+    <radio-group bindchange="handleIDSelect" class="box-radio">
+      <block wx:for="{{IDItems}}" wx:key="value">
+        <view class="box-radio">
+          <radio color="#5e86f8" value="{{item.value}}" checked="{{item.checked}}"/>
+          <view>{{item.name}}</view>
+        </view>
+      </block>
+    </radio-group>
+    <button class="var-button" bind:tap="handleSubmit">提交</button>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+{
+  "navigationBarBackgroundColor":"#4777ff",
+  "usingComponents":{
+    "van-search": "/components/search/index",
+    "mp-tabbar": "/components/tabbar/tabbar",
+    "stuff-list": "/components/stuff-list/stuff-list",
+    "van-dropdown-menu": "/components/dropdown-menu/index",
+    "van-dropdown-item": "/components/dropdown-item/index"
+  }
+}

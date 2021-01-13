@@ -1,0 +1,25 @@
+<!--pages/insider/approval/approval.wxml-->
+<view class="approval">
+  <van-tabs swipeable sticky color="#4777ff" line-height='3rpx' line-width='250rpx' bind:change="handleChangeTabs">
+    <van-tab title="待审批">
+      <picker bindchange="bindPickerChange" value="{{select}}" range="{{selectList}}">
+        <view class="picker">{{select}}</view>
+      </picker>
+      <view class="approval-main">
+        <stuff-list  arrData="{{listData}}" isIndex="0" isBtn="true"   btnTitle="审批报价" isOfferNum="true" url="/pages/insider/approval-detail/approval-detail"></stuff-list>
+      </view>
+    </van-tab>
+
+    <van-tab title="已审批">
+      <picker bindchange="bindPickerChange" value="{{select}}" range="{{selectList}}">
+        <view class="picker">{{select}}</view>
+      </picker>
+      <view class="approval-main">
+        <stuff-list  arrData="{{listData}}" isIndex="1" isBtn="false"  btnTitle="查看详情" isOfferNum="true" url="/pages/insider/approval-detail/approval-detail" ></stuff-list>
+      </view>
+    </van-tab>
+  </van-tabs>
+</view>
+
+<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" class="{{isIPhone?'iphone':''}}" current='0' list="{{list}}" bindchange="handleNavChange"></mp-tabbar>
+<drag></drag>

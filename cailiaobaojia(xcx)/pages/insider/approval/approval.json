@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-tab": "/components/tab/index",
+    "van-tabs": "/components/tabs/index",
+    "stuff-list":"/components/stuff-list/stuff-list" ,
+    "mp-tabbar": "/components/tabbar/tabbar"
+  }
+}

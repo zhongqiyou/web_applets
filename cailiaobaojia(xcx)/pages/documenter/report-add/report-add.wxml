@@ -1,0 +1,85 @@
+<view class="report-add">
+  <van-popup
+  show="{{ show }}"
+  position="bottom"
+  custom-style="height: 45%;"
+  bind:close="onClose"
+  >
+  <van-datetime-picker
+  type="datetime"
+  value="{{ currentDate }}"
+  bind:confirm="onDetermineDatetime"
+  bind:cancel="onCloseDatetime"
+  />
+</van-popup>
+  
+<form bindsubmit="handleSubmit">
+  <view class="input-cell">
+    <view class="cell-title">施工单位：</view>
+    <view class="cell-input"><input type="text" value="{{bindingInfo.company}}" disabled name="constructionUnits" placeholder="请输入施工单位" /></view>
+  </view>
+  <view class="input-cell">
+    <view class="cell-title">工程名称：</view>
+    <view class="cell-input"><input type="text" name="constructionName" placeholder="请输入工程名称" /></view>
+  </view>
+  <view class="input-cell">
+    <view class="cell-title">施工部位：</view>
+    <view class="cell-input"><input type="text" name="constructionDepartment" placeholder="请输入施工部位" /></view>
+  </view>
+  <view class="input-cell">
+    <view class="cell-title">砼等级：</view>
+    <view class="cell-select">
+      <picker bindchange="handleChangeLevel" value="{{levelVal}}" range="{{level}}">
+        <view class="picker">{{levelVal}}</view>
+      </picker>
+      <picker bindchange="handleNorms" value="{{normsVal}}" range="{{norms}}">
+        <view class="picker">{{normsVal}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="input-cell">
+    <view class="cell-title">塌落度：</view>
+    <picker bindchange="handleSlump" value="{{slumpValue}}" range="{{slump}}">
+        <view class="picker" style="width: 495rpx;">{{slumpValue}}</view>
+      </picker>
+  </view>
+  <view class="input-cell">
+    <view class="cell-title">总方量：</view>
+    <view class="cell-input"><input type="text" name="volume" value="{{volume}}" bindinput="getHandleVolume" placeholder="请输入总方量" /></view>
+  </view>
+  <view class="input-cell">
+    <view class="cell-title">卸料方式：</view>
+    <view class="cell-select">
+      <picker bindchange="handleUninstall" value="{{wayVal}}" range="{{wayList}}">
+        <view class="picker" style="width: 495rpx;">{{wayVal}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="input-cell">
+    <view class="cell-title">是否上网：</view>
+    <view class="cell-select">
+      <picker bindchange="handleNetwork" value="{{internet}}" range="{{internetList}}">
+        <view class="picker" style="width: 495rpx;">{{internet}}</view>
+      </picker>
+    </view>
+  </view>
+  <view class="input-cell">
+    <view class="cell-title">浇筑时间：</view>
+    <view class="cell-input" >
+      <input type="text" name="pouring" disabled value="{{date}}" bindtap="getHandlePouring" placeholder="请选择浇筑时间" />
+    </view>
+  </view>
+  <view class="input-cell">
+    <view class="cell-title">联系方式：</view>
+    <view class="cell-input"><input type="Number" disabled value="{{bindingInfo.phone}}" name="mobile" placeholder="请输入联系方式" maxlength="11" /></view>
+  </view> 
+  <view class="input-cell">
+    <view class="cell-title">联系人姓名：</view>
+    <view class="cell-input"><input type="text" disabled  value="{{bindingInfo.name}}" name="nickName" placeholder="请输入联系人姓名" maxlength="8"/></view>
+  </view>
+  <button class="var-button" form-type="submit">提交审核</button>
+</form>
+</view>
+
+<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;z-index:99;" class="{{isIPhone?'iphone':''}}" list="{{list}}"  current='1' bindchange="handleNavChange"></mp-tabbar>
+<drag></drag>

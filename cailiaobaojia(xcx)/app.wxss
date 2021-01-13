@@ -1,0 +1,111 @@
+
+@import '/components/common/index.wxss';
+
+
+page{
+  --main-color: #4777ff;
+  --bg-color: #f7f4f8;
+}
+
+
+/* 
+  通用样式 
+*/
+button::after{
+  display: none;
+}
+
+.iphone{
+  padding-bottom: 60rpx!important;
+  background: #f7f7f7;
+}
+
+.var-cell{
+  padding: 50rpx 0;
+  border-bottom: 1px solid #DEDEDE;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.input-cell{
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  margin-bottom: 32rpx;
+}
+.input-cell .cell-title{
+  min-width: 190rpx;
+}
+.input-cell .cell-input{
+  border: 1px solid #cacaca;
+  border-radius: 10rpx;
+  width: 100%;
+}
+.input-cell .cell-input input{
+  height: 78rpx;
+  line-height: 78rpx;
+  padding: 0 33rpx;
+  font-size: 28rpx;
+}
+.input-cell .cell-select{
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+}
+
+textarea{
+  padding: 31rpx 32rpx;
+  width: 100%;
+  height: 333rpx;
+  box-sizing: border-box;
+}
+
+button.var-button{
+  background: var(--main-color);
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  padding: 5rpx;
+  color: #fff;
+}
+
+.header-mask::after{
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200rpx;
+  display: block;
+  content: '';
+  background: var(--main-color);
+  border-bottom-left-radius: 50rpx;
+  border-bottom-right-radius: 50rpx;
+}
+
+.base-round::before{
+  position: absolute;
+  left: -17rpx;
+  top: 49%;
+  display: block;
+  content: '';
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background: var(--main-color);
+}
+.base-round::after{
+  position: absolute;
+  right: -17rpx;
+  top: 49%;
+  display: block;
+  content: '';
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  background: var(--main-color);
+}
+
+.weui-bar__item_on .weui-tabbar__label{
+  color: var(--main-color)!important;
+}

@@ -1,0 +1,38 @@
+<!--pages/insider/approval-total/approval-total.wxml-->
+<view class="approval-total">
+  <view class="total-header">
+    <van-search
+    value="{{ keyword }}"
+    shape="round"
+    placeholder="请输入搜索关键词"
+    bind:search="onSearch"
+   />
+    <van-dropdown-menu>
+      <picker mode="date" fields="year" fields="month" value="{{currentDate}}" bindchange="bindDateChange" class="picker">
+        <view class="picker-content">
+          <view class="{{date == '时间筛选' ? '' : 'color-black'}}">
+          {{date}}
+          </view>
+          <view catchtap="onDeleteDate"><image class="picker-img {{date == '时间筛选' ? 'picker-img-none' : ''}}" src="../../../assets/icon/icon-delete.png"></image></view>
+        </view>
+       </picker>
+    </van-dropdown-menu>
+  </view>
+  <view class="total-list">
+    <block wx:for="{{listData}}" wx:key="index">
+    <view class="list-item">
+      <text class="item-h1">工程名称：{{item.construction_name}}</text>
+      <view class="item-info">
+        <view>施工单位：{{item.construction_units}}</view>
+        <view>总方量：{{item.volume}} 坍塌度{{item.collapse}}</view>
+        <view>浇筑时间：{{item.pouring}}</view>
+      </view>
+      <navigator class="item-button" url="/pages/documenter/report-detail/report-detail?id={{item.id}}&btn=0"  >查看详情</navigator>
+    </view>
+    </block>
+    <van-empty image="error" wx-if="{{listData.length <= 0}}" description="暂无数据" />   
+  </view>
+</view>
+
+<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" class="{{isIPhone?'iphone':''}}" current='1' list="{{list}}" bindchange="handleNavChange"></mp-tabbar>
+<drag></drag>

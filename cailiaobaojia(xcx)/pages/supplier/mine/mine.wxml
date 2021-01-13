@@ -1,0 +1,28 @@
+<!--pages/supplier/mine/mine.wxml-->
+<view class="supplier-mine header-mask">
+  <view class="mine-header">
+    <van-search
+    value="{{ keyword }}"
+    shape="round"
+    background="#4777ff"
+    placeholder="请输入搜索关键词"
+    bind:search="onSearch"
+   />
+    <van-dropdown-menu>
+      <picker mode="date" fields="year" fields="month" value="{{currentDate}}" bindchange="bindDateChange" class="picker">
+        <view class="picker-content">
+          <view class="{{date == '时间筛选' ? '' : 'color-black'}}">
+          {{date}}
+          </view>
+          <view catchtap="onDeleteDate"><image class="picker-img {{date == '时间筛选' ? 'picker-img-none' : ''}}" src="../../../assets/icon/icon-delete.png"></image></view>
+        </view>
+       </picker>
+    </van-dropdown-menu>
+  </view>
+  <stuff-list  isOfferDate="true" arrData="{{myOfferData}}" isRemind="true" btnTitle="查看详情" url="/pages/supplier/detail/detail">
+  
+  </stuff-list>
+</view>
+
+<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" class="{{isIPhone?'iphone':''}}" list="{{list}}" current='1' bindchange="handleNavChange"></mp-tabbar>
+<drag></drag>

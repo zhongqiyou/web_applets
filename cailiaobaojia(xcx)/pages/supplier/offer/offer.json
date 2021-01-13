@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-uploader": "/components/uploader/index" ,
+    "van-dialog": "/components/dialog/index" ,
+    "van-toast": "/components/toast/index" ,
+    "van-datetime-picker": "/components/datetime-picker/index" ,
+    "van-popup":"/components/popup/index"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/other/warrant/warrant",
+    "pages/other/id-select/id-select",
+    "pages/other/supplier-sign/supplier-sign",
+    "pages/other/project-sign/project-sign",
+    "pages/other/insider-sign/insider-sign",
+    "pages/supplier/index/index",
+    "pages/supplier/offer/offer",
+    "pages/supplier/mine/mine",
+    "pages/supplier/detail/detail",
+    "pages/documenter/mine-report/mine-report",
+    "pages/documenter/report-detail/report-detail",
+    "pages/documenter/failed-detail/failed-detail",
+    "pages/documenter/report-add/report-add",
+    "pages/project/offer-order/offer-order",
+    "pages/insider/approval/approval",
+    "pages/insider/approval-detail/approval-detail",
+    "pages/insider/approval-total/approval-total" ,
+    "pages/insider/offer-total/offer-total" 
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json" ,
+  "usingComponents": {
+    "drag":"/components/drag/drag"
+  }
+}

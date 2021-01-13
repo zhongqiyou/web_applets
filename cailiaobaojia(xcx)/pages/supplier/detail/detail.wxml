@@ -1,0 +1,84 @@
+<!--pages/supplier/detail/detail.wxml-->
+<view class="supplier-detail">
+  <view class="detail-header base">
+    <view class="header-cell">
+      <view class="cell-title">报价人电话：</view>
+      <view class="cell-info">{{infoData.mobile ? infoData.mobile : offerData.get_user_offer[0].get_user[0].get_supplier_audit_info.mobile}}</view>
+    </view>
+    <view class="header-cell">
+      <view class="cell-title">报价人姓名：</view>
+      <view class="cell-info">{{infoData.name ? infoData.name : offerData.get_user_offer[0].get_user[0].get_supplier_audit_info.nick_name}}</view>
+    </view>
+    <view class="header-cell">
+      <view class="cell-title">公司名字：</view>
+      <view class="cell-info">{{infoData.company ? infoData.company : offerData.get_user_offer[0].get_user[0].get_supplier_audit_info.supplier_name}}</view>
+    </view>
+    <view class="header-cell">
+      <view class="cell-title">所需材料数量：</view>
+      <view class="cell-info">{{offerData.num}}</view>
+    </view>
+    <view class="header-cell">
+      <view class="cell-title">需求周期：</view>
+      <view class="cell-info">{{offerData.demand_times}}</view>
+    </view>
+    <view class="header-cell">
+      <view class="cell-title">报价日期：</view>
+      <view class="cell-info">{{offerData.get_user_offer[0].get_offer_user[0].material_time}}</view>
+    </view>
+  </view>
+
+  <view class="detail-table base">
+    <scroll-view  scroll-x="true" scroll-left="{{left}}">
+      <view style="width:880rpx;">
+      <view class="table-header common">
+        <text>材料名称</text>
+        <text>规格</text>
+        <text>上周报价(元)</text>
+        <text>本周报价(元)</text>
+        <text>备注</text>
+      </view>
+      <block wx:for="{{formData}}" wx:key="index">
+        <view class="table-list common">
+          <text>{{item.name}}</text>
+          <text>{{item.specification}}</text>
+          <text>{{item.up_money}}</text>
+          <text>{{item.money}}</text>
+          <text>{{item.remarks}}</text>
+        </view>      
+      </block>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="detail-pics base">
+    <view class="cell-title">上传报价单照片:<text>需上传纸质（照片）报价单</text></view>
+    <image class="pics-img" src='{{baseUrl}}{{offerData.get_user_offer[0].get_offer_user[0].image_url}}' mode="widthFix" lazy-load="true" />
+  </view>
+
+
+  <!-- <view class="detail-step base-round report-detail" wx:if="{{isApprovalInfo}}">
+    <view class="step-list">
+      <block wx:for="{{examineData}}" wx:key="index">
+      <view class="list-item round">
+        <view class="item-time">{{item.updated_at}}</view>
+        <view class="item-info">
+          <text class="item-name">{{item.get_user_audit.nick_name}}</text>
+          <text class="item-job">{{item.management}}</text>
+          <text class="item-status {{item.audit == '发起报价' ||  item.audit == '通过' ? 'color-blue':''}}  {{item.audit == '未审核' || item.audit == '未通过' ? 'color-red':''}}">{{item.audit}}</text>
+        </view>
+      </view>        
+      </block>
+    </view>
+  </view> -->
+
+  <!-- <view class="detail-button" wx:if="{{isNeed}}">
+    <button class="button-agree" bind:tap="onAgree">同意</button>
+    <button class="button-refuse" bind:tap="onClose">拒绝</button>
+  </view> -->
+
+  
+
+
+</view>
+
+<drag></drag>

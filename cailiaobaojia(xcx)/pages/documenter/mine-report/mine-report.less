@@ -1,0 +1,57 @@
+/* pages/documenter/mine-report/mine-report.wxss */
+page{
+  background: var(--bg-color);
+}
+
+.van-tabs{
+  height: 100vh;
+}
+
+.mine-report{
+  .report-list{
+    padding: 39rpx 32rpx;
+    .list-item{
+      position: relative;
+      padding: 31rpx;
+      background: #fff;
+      color: #666;
+      margin-bottom: 32rpx;
+      border-radius: 20rpx;
+      &::before{
+          position: absolute;
+          top: 33rpx;
+          left: 0;
+          display: block;
+          content: '';
+          height: 40rpx;
+          width: 6rpx;
+          background: #FF668F;
+      }
+      &:nth-child(2n)::before{
+        background: #4DDF98;
+      }
+      &:nth-child(3n)::before{
+        background: #A18CFD;
+      }
+      .item-h1{
+        font-size: 36rpx;
+        font-weight: 700;
+        color: #333;
+      }
+      .item-info{
+        margin: 20rpx 0;
+        line-height: 50rpx;
+        font-size: 28rpx;
+      }
+      .item-button{
+        width: 180rpx;
+        line-height: 60rpx;
+        font-size: 30rpx;
+        border-radius: 10rpx;
+        background: var(--main-color);
+        color: #fff;
+        text-align: center;
+      }
+    }
+  } // .report-list end
+} // .mine-report end

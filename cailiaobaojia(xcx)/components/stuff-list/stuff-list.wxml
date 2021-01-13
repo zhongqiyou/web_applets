@@ -1,0 +1,27 @@
+
+<view class="stuff-list">
+  <block wx:for="{{arrData}}" wx:key="index">
+    <view class="list-item">
+      <text class="item-h1">材料名称：{{item.name}}</text>
+      <view class="slot-btn" wx-if="{{isRemind}}">
+          <button type="primary" class="btn" bindtap="onRemind" data-id="{{item.id}}" >提醒审核</button>
+      </view>
+
+
+      <view class="item-info">
+        <view class="info-detail">
+          <view>需求点：{{item.demand ? item.demand : item.get_offer.demand}}</view>
+          <view>需求数量：{{item.num ? item.num : item.get_offer.num}}</view>
+          <view>截止时间：{{item.demand_time ? item.demand_time : item.get_offer.demand_time}}</view>
+          <view class="red" wx:if="{{isOfferDate}}">报价时间：{{item.material_time}}</view>
+        </view>
+        <view>
+          <view class="red" wx:if="{{isOfferNum}}" style="text-align: right;font-size: 26rpx;">已有{{item.get_user_offer.length}}份报价</view>
+          <view class="info-button" wx:if="{{isJurisdictionNone}}" data-src="{{url}}?id={{item.offer_id ? item.offer_id : item.id}}&isIndex={{isIndex? isIndex : ''}}&isBtn={{isBtn ? isBtn : ''}}" bindtap="onJump" data-id="{{item.offer_id ? item.offer_id : item.id}}">{{btnTitle}}</view>
+          <view class="info-button"  wx:if="{{isJurisdiction}}" data-src="{{url}}?id={{item.offer_id ? item.offer_id : item.id}}&isIndex={{isIndex? isIndex : ''}}&isBtn={{isBtn ? isBtn : ''}}" bindtap="onJump" data-id="{{item.offer_id ? item.offer_id : item.id}}">{{btnTitle}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <van-empty image="error" wx-if="{{arrData.length <= 0}}" description="暂无数据" />   
+</view>

@@ -1,0 +1,7 @@
+<view class="warrant">
+  <view class="warrant-box">
+    <image wx:if="{{info.userInfo}}" class="box-img" src="{{info.userInfo.avatarUrl}}" mode="widthFix" lazy-load />
+    <view class="box-info">请依次允许获得你的公开信息及手机号码</view>
+    <button class="var-button" open-type="getUserInfo" bindgetuserinfo="handleGetUser">微信授权登录</button>
+  </view>
+</view>

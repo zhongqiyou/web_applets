@@ -1,0 +1,97 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": false,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "useIsolateContext": true,
+    "useCompilerModule": false,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "bundle": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.13.2",
+  "appid": "wxdeaa6926d90ac3a8",
+  "projectname": "ProjectOffer",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "供应商首页",
+          "pathName": "pages/supplier/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "项目方-资料员首页",
+          "pathName": "pages/documenter/mine-report/mine-report",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "项目方主管与内部销售员首页",
+          "pathName": "pages/project/offer-order/offer-order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "内部主管首页",
+          "pathName": "pages/insider/approval/approval",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/insider/approval-detail/approval-detail",
+          "pathName": "pages/insider/approval-detail/approval-detail",
+          "query": "id=75&isIndex=0&isBtn=true",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

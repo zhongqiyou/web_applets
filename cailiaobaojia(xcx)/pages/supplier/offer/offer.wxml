@@ -1,0 +1,78 @@
+<view class="supplier-offer">
+  <van-popup
+  show="{{ show }}"
+  position="bottom"
+  custom-style="height: 45%;"
+  bind:close="onClose"
+  >
+  <van-datetime-picker
+  type="datetime"
+  value="{{ currentDate }}"
+  bind:confirm="onDetermineDatetime"
+  bind:cancel="onCloseDatetime"
+  />
+</van-popup>
+  <view class="offer-header base">
+    <view class="var-cell">
+      <text class="cell-title">报价人电话：</text>
+      <input type="text" disabled value="{{infoData.get_supplier_audit_info.mobile}}" placeholder="请输入联系号码" />
+    </view>
+    <view class="var-cell">
+      <text class="cell-title">报价人姓名：</text>
+      <input type="text" disabled value="{{infoData.get_supplier_audit_info.nick_name}}" placeholder="请输入姓名" />
+    </view>
+    <view class="var-cell">
+      <text class="cell-title">公司名字：</text>
+      <input type="text" disabled value="{{infoData.get_supplier_audit_info.supplier_name}}" placeholder="请输入公司名称" />
+    </view>
+    <view class="var-cell">
+      <text class="cell-title">材料数量：</text>
+      <input type="text" disabled value="{{offerData.num}}" placeholder="请输入材料数量" />
+    </view>
+    <view class="var-cell">
+      <text class="cell-title">需求周期：</text>
+      <input type="text"  disabled value="{{offerData.demand_times}}"  placeholder="请输入需求周期" />
+    </view>
+    <view class="var-cell">
+      <text class="cell-title">报价日期：</text>
+      <input type="text" name="pouring" disabled value="{{date}}" bindtap="getHandlePouring" placeholder="请选择报价时间" />
+    </view>
+  </view>
+
+  <view class="offer-table base">
+    <scroll-view  scroll-x="true" scroll-left="{{left}}">
+      <view  class="move-x">
+          <view class="table-header common">
+          <view>材料名称</view>
+          <view>规格</view>
+          <view>上周报价(元)</view>
+          <view>本周报价(元)</view>
+          <view>备注</view>
+        </view>
+        <block wx:for="{{offerData.get_offer_specification}}" wx:key="index">
+          <view class="table-list common">
+            <view>{{item.name}}</view>
+            <view>{{item.specification}}</view>
+            <view><input type="text" value="{{item.up_money}}" bindinput="getContent" data-index="{{index}}" data-type="up_money" placeholder="请填写报价" /></view>
+            <view><input type="text" value="{{item.money}}" bindinput="getContent" data-index="{{index}}" data-type="money" placeholder="请填写报价" /></view>
+            <view><input type="text" value="{{item.remarks}}" bindinput="getContent" data-index="{{index}}" data-type="remarks" placeholder="请填写备注" /></view>
+          </view>      
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+ 
+
+  <view class="offer-upload base">
+    <text class="upload-title">上传报价单照片:</text>
+    <view class="upload-box">
+      <van-uploader file-list="{{ imgsList }}" bind:delete="handleDelPics" bind:after-read="handlePicsUpload"/>
+      <view class="box-info">需上传纸质（照片）报价单</view>
+    </view>
+  </view>
+  <button class="var-button" bindtap="onSendForm">提交报价单</button>
+</view>
+
+<van-dialog id="van-dialog" />
+<van-toast id="van-toast" />
+<drag></drag>

@@ -1,0 +1,665 @@
+<template>
+  <div id="vote-meeting">
+    <div class="trip-title">{{$t('repair.title')}}</div>
+    <div class="meeting-header">
+      <label class="header-date">
+        <input type="text" maxlength="4" v-model="date[0]" />
+        {{$t("VoteMeeting.y")}}
+        <input maxlength="2" v-model="date[1]" type="text" />
+        {{$t("VoteMeeting.m")}}
+        <input maxlength="2" v-model="date[2]" type="text" />
+        {{$t("VoteMeeting.d")}}
+      </label>
+      <label class="header-name">
+        {{$t("VoteMeeting.Resident")}}：
+        <input
+          style="width: auto; text-align: left;"
+          type="text"
+          v-model="resident_name"
+          disabled
+        />
+      </label>
+      <label class="header-age">
+        <input type="text" maxlength="3" v-model="age" disabled />
+        {{$t("VoteMeeting.years")}}
+      </label>
+    </div>
+    <table class="meeting-table new-table table" border="1">
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.Position")}}</td>
+        <td colspan="4" class="center">{{$t("VoteMeeting.Policy")}}</td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.Doctors")}}</td>
+        <td colspan="4">
+          <Input v-model="physicianContent" type="textarea" :autosize="{minRows: 2}" />
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.assessment")}}</td>
+        <td class="special">
+          <CheckboxGroup v-model="physicianAssess" @on-change="changePhysicianName">
+            <Checkbox label="1">{{$t('repair.Fall')}}</Checkbox>
+            <Checkbox label="2">{{$t('repair.accidental')}}</Checkbox>
+            <Checkbox label="3">{{$t('repair.Ingestion')}}</Checkbox>
+            <Checkbox label="4">{{$t('repair.Leave')}}</Checkbox>
+            <Checkbox label="5">{{$t('repair.Trouble')}}</Checkbox>
+            <Checkbox label="6">{{$t('repair.ulcer')}}</Checkbox>
+            <Checkbox label="7">{{$t('repair.Medicine')}}</Checkbox>
+            <br />
+            <Checkbox label="8">
+              {{$t('repair.Other')}}(
+              <Input
+                class="other"
+                v-model="physicianOther"
+                type="textarea"
+                :autosize="{minRows: 1 }"
+              />)
+            </Checkbox>
+          </CheckboxGroup>
+        </td>
+        <td class="head-bg">{{$t("VoteMeeting.Principal1")}}</td>
+        <td>
+          <Input v-model="physicianName" type="textarea" />
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.Review")}}</td>
+        <td colspan="4">
+          <Input v-model="recheckContent" type="textarea" :autosize="{minRows: 2}" />
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.assessment")}}</td>
+        <td class="special">
+          <CheckboxGroup v-model="recheckAssess" @on-change="changeRecheckName">
+            <Checkbox label="1">{{$t('repair.Fall')}}</Checkbox>
+            <Checkbox label="2">{{$t('repair.accidental')}}</Checkbox>
+            <Checkbox label="3">{{$t('repair.Ingestion')}}</Checkbox>
+            <Checkbox label="4">{{$t('repair.Leave')}}</Checkbox>
+            <Checkbox label="5">{{$t('repair.Trouble')}}</Checkbox>
+            <Checkbox label="6">{{$t('repair.ulcer')}}</Checkbox>
+            <Checkbox label="7">{{$t('repair.Medicine')}}</Checkbox>
+            <br />
+            <Checkbox label="8">
+              {{$t('repair.Other')}}(
+              <Input
+                class="other"
+                v-model="recheckOther"
+                type="textarea"
+                :autosize="{minRows: 1 }"
+              />)
+            </Checkbox>
+          </CheckboxGroup>
+        </td>
+        <td class="head-bg">{{$t("VoteMeeting.Principal1")}}</td>
+        <td>
+          <Input v-model="recheckName" type="textarea" />
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.Nurse")}}</td>
+        <td colspan="4">
+          <Input v-model="careContent" type="textarea" :autosize="{minRows: 2}" />
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.assessment")}}</td>
+        <td class="special">
+          <CheckboxGroup v-model="careAssess" @on-change="changeCareName">
+            <Checkbox label="1">{{$t('repair.Fall')}}</Checkbox>
+            <Checkbox label="2">{{$t('repair.accidental')}}</Checkbox>
+            <Checkbox label="3">{{$t('repair.Ingestion')}}</Checkbox>
+            <Checkbox label="4">{{$t('repair.Leave')}}</Checkbox>
+            <Checkbox label="5">{{$t('repair.Trouble')}}</Checkbox>
+            <Checkbox label="6">{{$t('repair.ulcer')}}</Checkbox>
+            <Checkbox label="7">{{$t('repair.Medicine')}}</Checkbox>
+            <br />
+            <Checkbox label="8">
+              {{$t('repair.Other')}}(
+              <Input class="other" v-model="careOther" type="textarea" :autosize="{minRows: 1 }" />)
+            </Checkbox>
+          </CheckboxGroup>
+        </td>
+        <td class="head-bg">{{$t("VoteMeeting.Principal1")}}</td>
+        <td>
+          <Input v-model="careName" type="textarea" />
+        </td>
+      </tr>
+      <!--介护-->
+      <tr>
+        <td class="head-bg">{{$t("JixuVoteMeeting.Nursing")}}</td>
+        <td colspan="4">
+          <Input v-model="nurseContent" type="textarea" :autosize="{minRows: 2}" />
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.assessment")}}</td>
+        <td class="special">
+          <CheckboxGroup v-model="nurseAssess" @on-change="changeNurseName">
+            <Checkbox label="1">{{$t('repair.Fall')}}</Checkbox>
+            <Checkbox label="2">{{$t('repair.accidental')}}</Checkbox>
+            <Checkbox label="3">{{$t('repair.Ingestion')}}</Checkbox>
+            <Checkbox label="4">{{$t('repair.Leave')}}</Checkbox>
+            <Checkbox label="5">{{$t('repair.Trouble')}}</Checkbox>
+            <Checkbox label="6">{{$t('repair.ulcer')}}</Checkbox>
+            <Checkbox label="7">{{$t('repair.Medicine')}}</Checkbox>
+            <br />
+            <Checkbox label="8">
+              {{$t('repair.Other')}}(
+              <Input class="other" v-model="nurseOther" type="textarea" :autosize="{minRows: 1 }" />)
+            </Checkbox>
+          </CheckboxGroup>
+        </td>
+        <td class="head-bg">{{$t("VoteMeeting.Principal1")}}</td>
+        <td>
+          <Input v-model="nurseName" type="textarea" />
+        </td>
+      </tr>
+
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.Nutritionist")}}</td>
+        <td colspan="4">
+          <Input v-model="dieticianContent" type="textarea" :autosize="{minRows: 2}" />
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.assessment")}}</td>
+        <td class="special">
+          <CheckboxGroup v-model="dieticianAssess" @on-change="changeDieticianName">
+            <Checkbox label="1">{{$t('repair.Fall')}}</Checkbox>
+            <Checkbox label="2">{{$t('repair.accidental')}}</Checkbox>
+            <Checkbox label="3">{{$t('repair.Ingestion')}}</Checkbox>
+            <Checkbox label="4">{{$t('repair.Leave')}}</Checkbox>
+            <Checkbox label="5">{{$t('repair.Trouble')}}</Checkbox>
+            <Checkbox label="6">{{$t('repair.ulcer')}}</Checkbox>
+            <Checkbox label="7">{{$t('repair.Medicine')}}</Checkbox>
+            <br />
+            <Checkbox label="8">
+              {{$t('repair.Other')}}(
+              <Input
+                class="other"
+                v-model="dieticianOther"
+                type="textarea"
+                :autosize="{minRows: 1 }"
+              />)
+            </Checkbox>
+          </CheckboxGroup>
+        </td>
+        <td class="head-bg">{{$t("VoteMeeting.Principal1")}}</td>
+        <td>
+          <Input v-model="dieticianName" type="textarea" />
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.Talker")}}</td>
+        <td colspan="4">
+          <Input v-model="taikContent" type="textarea" :autosize="{minRows: 2}" />
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.assessment")}}</td>
+        <td class="special">
+          <CheckboxGroup v-model="taikAssess" @on-change="changeTaikAssess">
+            <Checkbox label="1">{{$t('repair.Fall')}}</Checkbox>
+            <Checkbox label="2">{{$t('repair.accidental')}}</Checkbox>
+            <Checkbox label="3">{{$t('repair.Ingestion')}}</Checkbox>
+            <Checkbox label="4">{{$t('repair.Leave')}}</Checkbox>
+            <Checkbox label="5">{{$t('repair.Trouble')}}</Checkbox>
+            <Checkbox label="6">{{$t('repair.ulcer')}}</Checkbox>
+            <Checkbox label="7">{{$t('repair.Medicine')}}</Checkbox>
+            <br />
+            <Checkbox label="8">
+              {{$t('repair.Other')}}(
+              <Input class="other" v-model="taikOther" type="textarea" :autosize="{minRows: 1 }" />)
+            </Checkbox>
+          </CheckboxGroup>
+        </td>
+        <td class="head-bg">{{$t("VoteMeeting.Principal1")}}</td>
+        <td>
+          <Input v-model="taikName" type="textarea" />
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.Nutritionist2")}}</td>
+        <td colspan="4">
+          <Input v-model="careManagerOntent" type="textarea" :autosize="{minRows: 2}" />
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.assessment")}}</td>
+        <td class="special">
+          <CheckboxGroup v-model="careManagerAssess" @on-change="changeCareManagerAssess">
+            <Checkbox label="1">{{$t('repair.Fall')}}</Checkbox>
+            <Checkbox label="2">{{$t('repair.accidental')}}</Checkbox>
+            <Checkbox label="3">{{$t('repair.Ingestion')}}</Checkbox>
+            <Checkbox label="4">{{$t('repair.Leave')}}</Checkbox>
+            <Checkbox label="5">{{$t('repair.Trouble')}}</Checkbox>
+            <Checkbox label="6">{{$t('repair.ulcer')}}</Checkbox>
+            <Checkbox label="7">{{$t('repair.Medicine')}}</Checkbox>
+            <br />
+            <Checkbox label="8">
+              {{$t('repair.Other')}}(
+              <Input
+                class="other"
+                v-model="careManagerOther"
+                type="textarea"
+                :autosize="{minRows: 1 }"
+              />)
+            </Checkbox>
+          </CheckboxGroup>
+        </td>
+        <td class="head-bg">{{$t("VoteMeeting.Principal1")}}</td>
+        <td>
+          <Input v-model="careManagerName" type="textarea" />
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg" rowspan="5">{{$t("VoteMeeting.Talker2")}}</td>
+        <td colspan="4">
+          <Input
+            :placeholder="$t('VoteMeeting.Reasons')"
+            v-model="determineReason"
+            type="textarea"
+            :autosize="{minRows: 2}"
+          />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" style="background: #fff;">
+          {{$t('repair.Judgement')}} ( {{$t('repair.Acceptance')}}
+          <RadioGroup v-model="determineResult">
+            <Radio
+              label="1"
+              @mouseup.native="handleRadioGroup('determineResult','1')"
+            >{{$t('VoteMeeting.Can')}}</Radio>
+            <Radio
+              label="2"
+              @mouseup.native="handleRadioGroup('determineResult','2')"
+            >{{$t('VoteMeeting.noCan')}}</Radio>
+          </RadioGroup>)
+        </td>
+      </tr>
+      <tr>
+        <td class="head-bg">{{$t("VoteMeeting.Degree")}}</td>
+        <td colspan="2" style="white-space: nowrap;">
+          <RadioGroup v-model="careLevel">
+            <Radio label="1" @mouseup.native="handleRadioGroup('careLevel','1')">1</Radio>
+            <Radio label="2" @mouseup.native="handleRadioGroup('careLevel','2')">2</Radio>
+            <Radio label="3" @mouseup.native="handleRadioGroup('careLevel','3')">3</Radio>
+            <Radio label="4" @mouseup.native="handleRadioGroup('careLevel','4')">4</Radio>
+            <Radio label="5" @mouseup.native="handleRadioGroup('careLevel','5')">5</Radio>
+          </RadioGroup>
+        </td>
+      </tr>
+      <tr>
+        <td style="background: #fff;">{{$t("VoteMeeting.Independence")}}</td>
+        <td colspan="2">{{$t("VoteMeeting.IndependenceTwo")}}</td>
+      </tr>
+      <tr>
+        <td style="background: #fff;">
+          <RadioGroup v-model="disabled">
+            <Radio label="1" @mouseup.native="handleRadioGroup('disabled','1')">J1</Radio>
+            <Radio label="2" @mouseup.native="handleRadioGroup('disabled','2')">J2</Radio>
+            <Radio label="3" @mouseup.native="handleRadioGroup('disabled','3')">A1</Radio>
+            <Radio label="4" @mouseup.native="handleRadioGroup('disabled','4')">A2</Radio>
+            <Radio label="5" @mouseup.native="handleRadioGroup('disabled','5')">B1</Radio>
+            <Radio label="6" @mouseup.native="handleRadioGroup('disabled','6')">B2</Radio>
+            <Radio label="7" @mouseup.native="handleRadioGroup('disabled','7')">C1</Radio>
+            <Radio label="8" @mouseup.native="handleRadioGroup('disabled','8')">C2</Radio>
+          </RadioGroup>
+        </td>
+        <td colspan="2">
+          <RadioGroup v-model="cognitive">
+            <Radio label="1" @mouseup.native="handleRadioGroup('cognitive','1')">Ⅰ</Radio>
+            <Radio label="2" @mouseup.native="handleRadioGroup('cognitive','2')">Ⅱa</Radio>
+            <Radio label="3" @mouseup.native="handleRadioGroup('cognitive','3')">Ⅱb</Radio>
+            <Radio label="4" @mouseup.native="handleRadioGroup('cognitive','4')">Ⅲa</Radio>
+            <Radio label="5" @mouseup.native="handleRadioGroup('cognitive','5')">Ⅲb</Radio>
+            <Radio label="6" @mouseup.native="handleRadioGroup('cognitive','6')">Ⅳ</Radio>
+            <Radio label="7" @mouseup.native="handleRadioGroup('cognitive','7')">M</Radio>
+          </RadioGroup>
+        </td>
+      </tr>
+    </table>
+    <div class="table-submit">
+      <!--<button @click="handleSave">
+        <i class="iconfont icon-baocun"></i> {{$t('global.preservation')}}
+      </button>-->
+      <button @click="handleSubmit">
+        <i class="iconfont icon-submit"></i>
+        {{$t('global.submit')}}
+      </button>
+    </div>
+  </div>
+</template>
+
+<script>
+import { sendVoteMeet, getVoteMeet } from "../network/Sinyu";
+import { format } from "../assets/utils/Tools";
+export default {
+  data() {
+    return {
+      oldInfo: {},
+      userInfo: {},
+      date: [],
+      id: "",
+      resident_name: "",
+      age: "",
+      physicianContent: "",
+      physicianAssess: [],
+      physicianName: "",
+      physicianOther: "",
+      recheckContent: "",
+      recheckAssess: [],
+      recheckName: "",
+      recheckOther: "",
+      careContent: "",
+      careAssess: [],
+      careName: "",
+      careOther: "",
+      nurseContent: "",
+      nurseAssess: [],
+      nurseName: "",
+      nurseOther: "",
+      dieticianContent: "",
+      dieticianAssess: [],
+      dieticianName: "",
+      dieticianOther: "",
+      taikContent: "",
+      taikAssess: [],
+      taikName: "",
+      taikOther: "",
+      careManagerOntent: "",
+      careManagerAssess: [],
+      careManagerName: "",
+      careManagerOther: "",
+      determineReason: "",
+      determineResult: "",
+      careLevel: "",
+      disabled: "",
+      cognitive: "",
+      dblclickNum: ""
+    };
+  },
+  created() {
+    this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    this.date = format(this.time).split("-");
+    this.oldInfo = JSON.parse(localStorage.getItem("oldInfo"));
+    this.resident_name = this.oldInfo.name;
+    this.age = this.oldInfo.age;
+    this._getVoteMeet();
+  },
+  methods: {
+    // 医师负责人
+    changePhysicianName() {
+      if (this.physicianAssess.length) {
+        this.physicianName = this.userInfo.userName;
+      } else {
+        this.physicianName = [];
+      }
+    },
+    //复检负责人
+    changeRecheckName() {
+      if (this.recheckAssess.length) {
+        this.recheckName = this.userInfo.userName;
+      } else {
+        this.recheckName = [];
+      }
+    },
+    //看护负责人
+    changeCareName() {
+      if (this.careAssess.length) {
+        this.careName = this.userInfo.userName;
+      } else {
+        this.careName = [];
+      }
+    },
+    //看护负责人
+    changeNurseName() {
+      if (this.nurseAssess.length) {
+        this.nurseName = this.userInfo.userName;
+      } else {
+        this.nurseName = [];
+      }
+    },
+    //营养师负责人
+    changeDieticianName() {
+      if (this.dieticianAssess.length) {
+        this.dieticianName = this.userInfo.userName;
+      } else {
+        this.dieticianName = [];
+      }
+    },
+    //相谈员负责人
+    changeTaikAssess() {
+      if (this.taikAssess.length) {
+        this.taikName = this.userInfo.userName;
+      } else {
+        this.taikName = [];
+      }
+    },
+    //护理经理负责人
+    changeCareManagerAssess() {
+      if (this.careManagerAssess.length) {
+        this.careManagerName = this.userInfo.userName;
+      } else {
+        this.careManagerName = [];
+      }
+    },
+    handleSave() {},
+    //处理选择单选框(取消选择)
+    handleRadioGroup(type, value) {
+      if (this[type] == value) {
+        setTimeout(() => {
+          this[type] = "";
+        }, 10);
+      }
+    },
+    handleSubmit() {
+      try {
+        const data = {
+          age: this.age,
+          careAssess: this.careAssess.join(","), //    看护的风险评估
+          careContent: this.careContent, //   看护评级内容
+          careId: this.userInfo.adminId, //   看护id
+          careName: this.careName, //   看护名称
+          careOther: this.careOther, //   看护的其他描述
+          careLevel: parseInt(this.careLevel), //   护理程度
+          careManagerAssess: this.careManagerAssess.join(","), //    护理经理的风险评估
+          careManagerId: this.userInfo.adminId, // 护理经理id
+          careManagerName: this.careManagerName, //  护理经理名字
+          careManagerOntent: this.careManagerOntent, //   护理经理评价内容
+          careManagerOther: this.careManagerOther, //   护理经理的其他描述
+          nurseAssess: this.nurseAssess.join(","), //    介护的风险评估
+          nurseId: this.userInfo.adminId, // 介护id
+          nurseName: this.nurseName, //  介护名字
+          nurseContent: this.nurseContent, //   介护评价内容
+          nurseOther: this.nurseOther, //   介护的其他描述
+          cognitive: this.cognitive, //    认知症老人日常生活的独立度
+          determineReason: this.determineReason, //  判定理由
+          determineResult: parseInt(this.determineResult), //  判定结果
+          dieticianAssess: this.dieticianAssess.join(","), //  营养师的风险评估
+          dieticianContent: this.dieticianContent, //   营养师评价内容
+          dieticianId: this.userInfo.adminId, // 营养师id
+          dieticianName: this.dieticianName, //  营养师名字
+          dieticianOther: this.dieticianOther, //  营养师的其他
+          disabled: parseInt(this.disabled), //   残疾老人日常生活的独立度
+          id: this.id, //   入所判定表，新增时不需要填写
+          oldId: this.oldInfo.oldId,
+          oldName: this.resident_name,
+          physicianAssess: this.physicianAssess.join(","), //   医师的风险评估
+          physicianContent: this.physicianContent, //     医师评级内容
+          physicianId: this.userInfo.adminId, //医师id
+          physicianName: this.physicianName, //   医师名称
+          physicianOther: this.physicianOther, //   医师的其他描述
+          recheckAssess: this.recheckAssess.join(","), //   复检的风险评估
+          recheckContent: this.recheckContent, //   复检评级内容
+          recheckId: this.userInfo.adminId, //    复检id
+          recheckName: this.recheckName, //   复检名称
+          recheckOther: this.recheckOther, //   复检名称
+          // recordDate: `${this.date[0]}-${this.date[1]}-${this.date[2]}`,
+          recordDate:format(new Date(), "YYYY-MM-DD"),
+          taikAssess: this.taikAssess.join(","), //    相谈员的风险评估
+          taikContent: this.taikContent, //    相谈员评价内容
+          taikId: this.userInfo.adminId, //    相谈员id
+          taikName: this.taikName, //    相谈员名字
+          taikOther: this.taikOther, //    相谈员名字
+          type: 1 //表的类型
+        };
+        this.$Modal.confirm({
+          title: this.$t("global.reminder"),
+          content: this.$t("global.submitInfo"),
+          okText:this.$t('global.sure'),
+          cancelText:this.$t('global.cancel'),
+          onOk: async () => {
+            const res = await sendVoteMeet(data);
+            if (res.code === 0) {
+              this.$Notice.success({
+                title: this.$t("global.operationSuccess"),
+                duration: 2
+              });
+            } else {
+              this.$Notice.error({
+                title: this.$t("global.operationFail"),
+                duration: 2
+              });
+            }
+          }
+        });
+      } catch (err) {
+        this.$Notice.error({
+          title: this.$t("global.operationFail"),
+          duration: 2
+        });
+        console.log(err);
+      }
+    },
+    //         网络请求        //
+    async _getVoteMeet() {
+      const data = {
+        id: this.oldInfo.oldId,
+        type: 1
+      };
+      const res = await getVoteMeet(data);
+      if (res.code === 0 && res.data) {
+        this.physicianContent = res.data.physicianContent;
+        this.physicianAssess = res.data.physicianAssess.split(",");
+        this.physicianName = res.data.physicianName;
+        this.physicianOther = res.data.physicianOther;
+        this.recheckContent = res.data.recheckContent;
+        this.recheckAssess = res.data.recheckAssess.split(",");
+        this.recheckName = res.data.recheckName;
+        this.recheckOther = res.data.recheckOther;
+        this.careContent = res.data.careContent;
+        this.careAssess = res.data.careAssess.split(",");
+        this.careName = res.data.careName;
+        this.careOther = res.data.careOther;
+        this.dieticianContent = res.data.dieticianContent;
+        this.dieticianAssess = res.data.dieticianAssess.split(",");
+        this.dieticianName = res.data.dieticianName;
+        this.dieticianOther = res.data.dieticianOther;
+        this.taikContent = res.data.taikContent;
+        this.taikAssess = res.data.taikAssess.split(",");
+        this.taikName = res.data.taikName;
+        this.taikOther = res.data.taikOther;
+        this.careManagerOntent = res.data.careManagerOntent;
+        this.careManagerAssess = res.data.careManagerAssess.split(",");
+        this.careManagerName = res.data.careManagerName;
+        this.careManagerOther = res.data.careManagerOther;
+        this.nurseContent = res.data.nurseContent;
+        this.nurseAssess = res.data.nurseAssess.split(",");
+        this.nurseName = res.data.nurseName;
+        this.nurseOther = res.data.nurseOther;
+        this.determineReason = res.data.determineReason;
+        this.determineResult = res.data.determineResult?res.data.determineResult.toString():'';
+        this.careLevel = res.data.careLevel?res.data.careLevel.toString():'';
+        this.disabled = res.data.disabled?res.data.disabled.toString():'';
+        this.cognitive = res.data.cognitive?res.data.cognitive.toString():'';
+        (this.id = res.data.id),
+          (this.date = (res.data.recordDate || "0000-00-00").split("-"));
+      }
+    }
+  }
+};
+</script>
+
+<style lang="less" scoped>
+#vote-meeting {
+  font-size: 0.14rem /* 14/102 */;
+  text-align: left;
+
+  .meeting-title {
+    text-align: left;
+    font-size: 0.18rem /* 18/102 */;
+    line-height: 0.55rem /* 56/102 */;
+    padding: 0 0.26rem /* 27/102 */;
+    // background: linear-gradient(90deg, #63af1e, #63af1e, #fff);
+    color: #fff;
+    margin: 0.25rem /* 25/102 */ 0;
+  }
+
+  .meeting-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.1rem /* 10/102 */;
+    input {
+      width: 0.39rem /* 40/102 */;
+      border: 0;
+      outline: none;
+      text-align: right;
+    }
+  }
+
+  .meeting-table {
+    width: 100%;
+    text-align: center;
+    background: #fff;
+    line-height: 0.39rem /* 40/102 */;
+    // border-color: var(--table-bg);
+    border-color: #c4e8bf;
+    border-radius: 5px;
+    overflow: hidden;
+    td {
+      vertical-align: middle;
+      &.head-bg {
+        white-space: nowrap;
+      }
+      &.special {
+        line-height: 0.2rem /* 20/102 */;
+        text-align: left;
+        white-space: normal;
+        .other {
+          width: 2rem;
+          height: 100%;
+          text-align: left;
+        }
+      }
+    }
+    label {
+      margin-right: 0.34rem /* 35/102 */;
+      input {
+        margin-left: 0.05rem /* 5/102 */;
+        margin-right: 0.03rem /* 3/102 */;
+      }
+    }
+    input[type="text"] {
+      width: 100%;
+      border: 0;
+      outline: none;
+    }
+    textarea {
+      width: 100%;
+      height: 0.69rem /* 70/102 */;
+      resize: none;
+      border: 0;
+      outline: none;
+      line-height: 0.2rem /* 20/102 */;
+      color: #333;
+    }
+    .center {
+      line-height: 0.39rem /* 40/102 */;
+    }
+  } // .meeting-table end
+} // vote-meeting end
+</style>

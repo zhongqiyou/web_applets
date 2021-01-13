@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-search": "/components/search/index",
+    "van-dropdown-menu": "/components/dropdown-menu/index",
+    "van-dropdown-item": "/components/dropdown-item/index" ,
+    "mp-tabbar": "/components/tabbar/tabbar" ,
+    "van-empty": "/components/empty/index" 
+  }
+}

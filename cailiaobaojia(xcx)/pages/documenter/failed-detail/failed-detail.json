@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "mp-tabbar": "/components/tabbar/tabbar" ,
+    "van-datetime-picker": "/components/datetime-picker/index" ,
+    "van-popup":"/components/popup/index"
+  }
+}

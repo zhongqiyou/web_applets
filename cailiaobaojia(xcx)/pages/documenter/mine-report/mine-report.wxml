@@ -1,0 +1,56 @@
+<!--pages/documenter/mine-report/mine-report.wxml-->
+<view class="mine-report">
+  <van-tabs swipeable sticky color="#4777ff" line-height='3rpx' line-width='250rpx' bind:change="handleChangeTabs">
+    <van-tab title="待审核">
+      <view class="report-list" wx:if="{{dataList.length > 0}}">
+        <block wx:for="{{dataList}}" wx:key="index">
+        <view class="list-item">
+          <text class="item-h1">工程名称：{{item.constructionName}}</text>
+          <view class="item-info">
+            <view>施工部位：{{item.constructionDepartment}}</view>
+            <view>总方量：{{item.volume}} 砼等级：{{item.get_concrete.name}}  {{item.get_concretes.name}}</view>
+            <view>浇筑时间：{{item.pouring}}</view>
+          </view>
+          <navigator class="item-button" url="/pages/documenter/report-detail/report-detail?id={{item.id}}&btn=0">查看详情</navigator>
+        </view>          
+        </block>
+      </view>
+      <van-empty image="error" wx:else description="暂无数据" />
+    </van-tab>
+    <van-tab title="未通过">
+      <view class="report-list" wx:if="{{dataList.length > 0}}">
+        <block wx:for="{{dataList}}" wx:key="index">
+        <view class="list-item">
+          <text class="item-h1">工程名称：{{item.constructionName}}</text>
+          <view class="item-info">
+            <view>施工部位：{{item.constructionDepartment}}</view>
+            <view>总方量：{{item.volume}} 砼等级：{{item.get_concrete.name}}  {{item.get_concretes.name}}</view>
+            <view>浇筑时间：{{item.pouring}}</view>
+          </view>
+          <navigator class="item-button" url="/pages/documenter/failed-detail/failed-detail?id={{item.id}}&btn=0">查看详情</navigator>
+        </view>          
+        </block>
+      </view>   
+      <van-empty image="error" wx:else description="暂无数据" />   
+    </van-tab>
+    <van-tab title="已通过">
+      <view class="report-list" wx:if="{{dataList.length > 0}}">
+        <block wx:for="{{dataList}}" wx:key="index">
+        <view class="list-item">
+          <text class="item-h1">工程名称：{{item.constructionName}}</text>
+          <view class="item-info">
+            <view>施工部位：{{item.constructionDepartment}}</view>
+            <view>总方量：{{item.volume}} 砼等级：{{item.get_concrete.name}}  {{item.get_concretes.name}}</view>
+            <view>浇筑时间：{{item.pouring}}</view>
+          </view>
+          <navigator class="item-button" url="/pages/documenter/report-detail/report-detail?id={{item.id}}&btn=0">查看详情</navigator>
+        </view>          
+        </block>
+      </view>      
+      <van-empty image="error" wx:else description="暂无数据" />
+    </van-tab>
+  </van-tabs>
+</view>
+
+<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" class="{{isIPhone?'iphone':''}}" list="{{list}}" current='0' bindchange="handleNavChange"></mp-tabbar>
+<drag></drag>

@@ -1,0 +1,31 @@
+<!--pages/insider/offer-total/offer-total.wxml-->
+<view class="approval-total">
+  <view class="total-header">
+    <van-search
+    value="{{ keyword }}"
+    shape="round"
+    placeholder="请输入搜索关键词"
+    bind:search="onSearch"
+   />
+    <van-dropdown-menu>
+      <picker mode="date" fields="year" fields="month" value="{{currentDate}}" bindchange="bindDateChange" class="picker">
+        <view class="picker-content">
+          <view class="{{date == '时间筛选' ? '' : 'color-black'}}">
+          {{date}}
+          </view>
+          <view catchtap="onDeleteDate"><image class="picker-img {{date == '时间筛选' ? 'picker-img-none' : ''}}" src="../../../assets/icon/icon-delete.png"></image></view>
+        </view>
+       </picker>
+    </van-dropdown-menu>
+  </view>
+
+  <view class="total-list">
+    <stuff-list  arrData="{{listData}}" isIndex="1" isJurisdictionNone="0" isJurisdiction="1" btnTitle="查看详情" isOfferNum="true" url="/pages/insider/approval-detail/approval-detail"></stuff-list>
+  </view>
+ 
+    
+     
+</view>
+
+<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" class="{{isIPhone?'iphone':''}}" current='2' list="{{list}}" bindchange="handleNavChange"></mp-tabbar>
+<drag></drag>

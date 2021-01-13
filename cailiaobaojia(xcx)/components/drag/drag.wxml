@@ -1,0 +1,14 @@
+<!--components/drag/drag.wxml-->
+<wxs module="move" src="./drag.wxs"></wxs>
+<block wx:if="{{isShow}}">
+ 
+  <view bindtap="add" class="drag" data-area="{{safeArea}}" change:prop="{{move.init}}" prop="{{position}}" catchtouchmove="{{move.handleTouchMove}}" catchtouchend="{{move.handleTouchEnd}}">
+    <van-transition show="{{ show }}"  custom-class="block" name="fade-up">
+     +1
+    </van-transition>
+    点击接收提醒
+  </view>
+
+</block>
+
+

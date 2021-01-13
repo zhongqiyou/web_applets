@@ -1,0 +1,2 @@
+/* pages/other/insider-sign/insider-sign.wxss */
+.insider-sign{padding:65rpx 63rpx 30rpx}.insider-sign .sign-h1{font-size:48rpx;font-weight: bold; color:#353535;margin-bottom:10rpx}.insider-sign .var-cell .cell-title{min-width:275rpx}.insider-sign .var-cell .box-radio{display:flex;flex:1;align-items:center;white-space:nowrap}.insider-sign .var-cell view.box-radio{margin-right:50rpx;font-size:26rpx}.insider-sign .var-button{margin-top:135rpx}

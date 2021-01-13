@@ -1,0 +1,19 @@
+
+<!-- <button type="primary" bindtap="onReceive">点击接收提醒</button> -->
+<view class="supplier-index header-mask">
+  <!-- <van-search type="text" value="{{ value }}" bindconfirm="confirmTap" input-align="center" placeholder="请输入搜索关键词"  background="#fffff" bind:change="handleSearch" /> -->
+  <van-search
+  value="{{ value }}"
+  shape="round"
+  background="#4777ff"
+  placeholder="请输入搜索关键词"
+  bind:search="onSearch"
+/>
+<stuff-list searchVal='{{value}}' btnTitle="去报价" arrData="{{listData}}" url="/pages/supplier/offer/offer"></stuff-list>
+
+ 
+</view>
+
+<mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" class="{{isIPhone?'iphone':''}}" list="{{list}}" bindchange="handleNavChange"></mp-tabbar>
+
+<drag></drag>

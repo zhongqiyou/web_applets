@@ -1,0 +1,38 @@
+<view class="project-sign">
+<form bindsubmit="handleSubmit">
+  <view class="sign-h1">注册</view>
+  <view class="var-cell">
+    <text class="cell-title">身份选择：</text>
+    <radio-group bindchange="handleIDSelect" class="box-radio">
+      <block wx:for="{{IDItems}}" wx:key="value">
+        <view class="box-radio">
+          <radio color="#5e86f8" value="{{item.value}}" checked="{{item.checked}}"/>
+          <view>{{item.name}}</view>
+        </view>
+      </block>
+    </radio-group>
+  </view>
+  <view class="var-cell">
+    <text class="cell-title">施工单位：</text>
+    <input type="text" name="projectName" placeholder="请输入公司名称" />
+  </view>
+  <view class="var-cell">
+    <text class="cell-title">负责人姓名：</text>
+    <input type="text" name="adminNickName" placeholder="请输入负责人姓名" maxlength="8"/>
+  </view>
+  <view class="var-cell">
+    <text class="cell-title">负责人电话：</text>
+    <input type="text" name="adminMobile" placeholder="请输入负责人电话" maxlength="11" />
+  </view>
+  <view class="var-cell">
+    <text class="cell-title">个人姓名：</text>
+    <input type="text" name="nickName" maxlength="8" placeholder="请输入姓名" />
+  </view>
+  <view class="var-cell">
+    <text class="cell-title">个人手机号：</text>
+    <input type="text" name="mobile" placeholder="请输入手机号" maxlength="11" />
+  </view>
+  <button class="var-button" form-type="submit">提交</button>
+  <van-dialog id="van-dialog" />
+</form>
+</view>

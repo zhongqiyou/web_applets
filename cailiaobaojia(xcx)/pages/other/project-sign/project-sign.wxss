@@ -1,0 +1,1 @@
+.project-sign{padding:65rpx 63rpx 30rpx}.project-sign .sign-h1{font-size:48rpx;color:#353535;margin-bottom:10rpx}.project-sign .var-cell .cell-title{min-width:275rpx}.project-sign .var-cell .box-radio{display:flex;flex:1;align-items:center;white-space:nowrap}.project-sign .var-cell view.box-radio{margin-right:50rpx;font-size:26rpx}.project-sign .var-button{margin-top:70rpx}

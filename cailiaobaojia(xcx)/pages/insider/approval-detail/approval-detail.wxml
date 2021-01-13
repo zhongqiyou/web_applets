@@ -1,0 +1,59 @@
+<!--pages/insider/approval-detail/approval-detail.wxml-->
+<view class="approval-detail">
+  <view class="detail-header">
+    <view class="detail-h1">订单详情</view>
+    <view class="header-detail">
+      <view>材料名称：{{listData.name}}</view>
+      <view>报价日期：{{listData.demand_time}}</view>
+      <view>材料数量：{{listData.num}}</view>
+      <view>供应点：{{listData.demand}}</view>
+    </view>
+  </view>
+  <view class="detail-list">
+    <view class="detail-h1">报价信息</view>
+      <block wx:for="{{listData.get_user_offer}}" wx:key="index">
+      <view class="list-item">
+        <view class="item-title">供应商公司名称：{{item.get_user[0].get_supplier.supplier_name}}</view>
+        <view class="item-info">
+          <view class="info-txt">
+            <!-- <view>上周报价（元/方）：{{item.get_offer_user[0].up_money}}</view>
+            <view>本周报价（元/方）：{{item.get_offer_user[0].money}}</view> -->
+            <view>报价时间：{{item.material_time}}</view> 
+
+          </view>
+          <button class="info-button {{isTitle ? '' : 'is-color' }}" bindtap="onJumpDetail" data-id="{{item.offer_id}}" data-userId="{{item.user_id}}">{{isTitle ?'查看报价' : '报价已阅'}}</button>
+        </view>
+      </view>
+      </block>
+  </view>
+
+  <!-- 审核流程信息start -->
+
+
+  
+  <view class="detail-step base-round report-detail">
+    <view class="step-list">
+      <block wx:for="{{examineData}}" wx:key="index">
+      <view class="list-item round">
+        <view class="item-time">{{item.updated_at}}</view>
+        <view class="item-info">
+          <text class="item-name">{{item.get_user_audit.get_inside.nick_name}}</text>
+          <text class="item-job">内部主管</text>
+          <text class="item-status {{item.audit == '通过' ? 'color-blue':''}}  {{item.audit == '未审核' || item.audit == '未通过' ? 'color-red':''}}">{{item.audit}}</text>
+        </view>
+      </view>        
+      </block>
+    </view>
+  </view>
+
+
+  <!-- 审核流程信息end -->
+
+
+  <view class="detail-button" wx:if="{{isBtn}}">
+    <button class="button-agree"  bind:tap="onAgree">同意</button>
+  </view>
+
+
+</view>
+<drag></drag>

@@ -1,0 +1,21 @@
+.warrant{
+  padding: 150rpx 32rpx;
+}
+.warrant-box{
+  padding: 142rpx 40rpx;
+  text-align: center;
+}
+
+.warrant-box .box-img{
+  width: 172rpx;
+  height: 172rpx;
+  border-radius: 50%;
+}
+
+.warrant-box .box-info{
+  margin-top: 99rpx;
+  font-size-adjust: 36rpx;
+  font-weight: 700;
+  margin-bottom: 49rpx;
+  color: #353535;
+}

@@ -1,0 +1,34 @@
+/* pages/documenter/failed-detail/failed-detail.wxss */
+
+.failed-detail{
+  padding: 39rpx 31rpx;
+  .picker{
+    text-align: left;
+    width: 236rpx;
+    border: 1px solid #cacaca;
+    border-radius: 10rpx;
+    line-height: 78rpx;
+    font-size: 28rpx;
+    padding: 0 33rpx;
+    box-sizing: border-box;
+    position: relative;
+    color: #333;
+    &::before{
+      position: absolute;
+      right: 20rpx;
+      top: 35rpx;
+      display: block;
+      content: '';
+      width: 0;
+      height: 0;
+      border-width: 0 10rpx 10rpx;
+      border-style: solid;
+      border-color: transparent transparent #999;
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.var-button{
+  margin-top: 80rpx;
+}
